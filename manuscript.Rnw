@@ -1,0 +1,140 @@
+\documentclass[man,floatsintext]{apa6}
+
+% General settings:
+
+% Paper size and margins (with extra margin on the right to make space for side notes):
+\geometry{a4paper, margin=1in, right=2in, left=0.7in}
+% Uncomment this line before submission:
+% \geometry{a4paper, margin=1in}
+
+\usepackage[american]{babel}         % Language settings
+\usepackage[T1]{fontenc}             % Needed for non-ASCII characters (umlauts, accented)
+\usepackage[kerning=true]{microtype} % Better kerning
+\usepackage{csquotes}                % Better quotes (inline and block quotes)
+\usepackage{paralist}                % Better lists
+\usepackage{longtable}               % Better tables
+\usepackage{color}                   % Colors
+\usepackage[hidelinks]{hyperref}     % Don’t wrap links in obnoxious green boxes.
+\usepackage{gb4e}\noautomath         % Linguistic examples
+\usepackage{gensymb}                 % Macros for typesetting various units of measurement
+
+% Bibliography settings:
+\usepackage[backend=biber,useprefix=true,style=apa,url=false,doi=false,eprint=false]{biblatex}
+\DeclareLanguageMapping{american}{american-apa}
+\addbibresource{manuscript.bib}
+
+% The following lines give us some macros for adding comments and
+% annotations in the text:
+\usepackage{tcolorbox}
+\usepackage{setspace}
+\usepackage{soul}
+\usepackage{marginnote}
+\usepackage[textwidth=1.4in,textsize=scriptsize,shadow,color=green!40,linecolor=black]{todonotes}
+
+% Notebox environment for longer comments:
+\newenvironment{notebox}%
+  {\setstretch{1}\begin{tcolorbox}[colframe=red!75!black]}%
+    {\end{tcolorbox}\setstretch{2}}
+  
+% \inlinenote{…} inserts marked text:
+\newcommand{\inlinenote}[2]{\hl{#1} \textcolor{red}{[#2]}}
+  
+% \sidenote{…}{…} marks text (first argument) and places a note in the margin
+% (second argument):
+\newcommand{\sidenote}[2]{\todo{#2}\hl{#1}}
+% \newcommand{\sidenote}[2]{#1}  % Uncomment to hide comments.
+
+% Misc. macro definitions that help us do things consistently and with
+% less typing:
+\newcommand{\reffigure}[1]{Fig.~\ref{#1}}  % To reference figures
+
+% Title page settings:
+\title{This is the title of the paper}
+\shorttitle{Short title}
+
+\threeauthors{Author 1}{Author 2}{Author 3}
+\threeaffiliations{Department of X, University of Y}
+                  {Department of X, University of Y}
+                  {Department of X, University of Y}
+
+\keywords{keywords 1, keywords 2, keywords 3, keywords 4}
+                
+\abstract{The abstract goes here.}
+
+\begin{document}
+
+% Initialize R session (e.g., load packages, load data, set themes
+% define functions, …):
+<<init, echo=FALSE, include=FALSE>>=
+# Load packages:
+library(tidyverse)
+library(magrittr)
+library(brms)
+
+# ggplot2 settings:
+theme_set(theme_bw())
+
+# Load data:
+# (none in this example)
+
+# Useful functions:
+expit <- function(x) exp(x)/(1+exp(x))
+gmean <- function(x) exp(mean(log(x)))
+@
+
+\maketitle
+
+This is where the main text starts.  Here’s a citation, just for illustration \parencite{Shannon1948}.
+
+\begin{notebox}
+  This is a notebox for longer comments during the writing stage.
+\end{notebox}
+
+This sentence contains an \inlinenote{inline note}{This is a comment.}.
+
+This sentence contains an \sidenote{side note}{This is another comment.}.
+
+\begin{figure}
+  \centering
+<<fig-example-1,echo=F,include=T,message=F,fig.path="figures/",fig.width=5,fig.height=5>>=
+plot(1:10, pch=1:10)
+@ 
+  \caption{This is the caption of the example figure.}
+  \label{fig:example1}
+\end{figure}
+
+As can be seen in \reffigure{fig:example1}, R can be used to create plots and Knitr inserts them into the document.
+
+\section{Methods and Materials}
+
+\subsection{Participants}
+
+\subsection{Apparatus}
+
+\subsection{Materials}
+
+\subsection{Procedure}
+
+\subsection{Data collection}
+
+\subsection{Data analysis}
+
+\subsection{Results}
+
+\section{Discussion}
+
+\paragraph{Author contributions}
+
+What everyone did.
+
+\paragraph{Acknowledgments} For comments we are grateful to ….  Funding was provided by ….  Let’s also acknowledge the open source / libre software that we \sidenote{used.}{One last comment.}
+
+\printbibliography[]
+
+\appendix
+
+\section{This is an appendix}
+
+Lots of technical stuff that no one is going to read.  Since we know that no one is going to read this, we don’t proof-read it and it will contain embarrassing typos. 
+
+\end{document}
