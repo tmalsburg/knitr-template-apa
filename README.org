@@ -1,5 +1,5 @@
 
-To compile the template to PDF use the following sequence of comments in a command shell:
+To compile the template to PDF execute the following sequence of commands in a shell:
 
 #+BEGIN_SRC sh
 Rscript -e "library(knitr); knit('manuscript.Rnw')"
