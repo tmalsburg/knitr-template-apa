@@ -1,0 +1,14 @@
+
+To compile the template to PDF use the following sequence of comments in a command shell:
+
+#+BEGIN_SRC sh
+Rscript -e "library(knitr); knit('manuscript.Rnw')"
+pdflatex manuscript
+biber manuscript
+pdflatex manuscript
+pdflatex manuscript
+#+END_SRC
+
+RStudio might automatize this process but I’m not familiar with it.
+
+Suggestions for improvements and pull requests are welcome.
