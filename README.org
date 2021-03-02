@@ -1,3 +1,5 @@
+[[file:rupavatara.jpg]]
+
 A template for APA style articles written in knitr / LaTeX.  The problem this template tries to solve is that there are many moving parts that one needs to pay attention to when starting a new document from scratch.  This template aims to give authors a solid starting point that implements common best practices and that should work as a good starting point for most documents.  The focus of this template is on use cases in (psycho)linguistics, but it’s not strictly limited to that area.  Suggestions for improvements and pull requests are welcome.
 
 ** How to use knitr in RStudio
