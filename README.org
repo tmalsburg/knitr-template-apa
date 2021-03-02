@@ -1,5 +1,12 @@
+A template for APA style articles written in knitr / LaTeX.  The problem this template tries to solve is that there are many moving parts that one needs to pay attention to when starting a new document from scratch.  This template aims to give authors a solid starting point that implements common best practices and that should work as a good starting point for most documents.  The focus of this template is on use cases in (psycho)linguistics, but it’s not strictly limited to that area.  Suggestions for improvements and pull requests are welcome.
 
-To compile the template to PDF execute the following sequence of commands in a shell:
+** How to use knitr in RStudio
+RStudio extensive support for knitr documents.  See the following documents for instructions:
+- [[https://support.rstudio.com/hc/en-us/articles/200552056-Using-Sweave-and-knitr][Using Sweave and knitr]]
+- [[https://support.rstudio.com/hc/en-us/articles/200532247][Weaving Rnw Files]]
+
+** How to compile the template to PDF on Linux and Mac Os X using a command shell
+Open a command shell in the directory containing the ~.Rnw~ file and executed the following sequence of commands:
 
 #+BEGIN_SRC sh
 Rscript -e "library(knitr); knit('manuscript.Rnw')"
@@ -9,6 +16,34 @@ pdflatex manuscript
 pdflatex manuscript
 #+END_SRC
 
-RStudio might automatize this process but I’m not familiar with it.
+** How to compile the template in Windows using a command shell
+(Description contributed by @epankratz and slightly adapted.)
 
-Suggestions for improvements and pull requests are welcome.
+Run this sequence of commands in a command shell:
+
+#+BEGIN_SRC sh
+Rscript.exe -e "library(knitr); knit('manuscript.Rnw')"
+pdflatex manuscript
+biber manuscript
+pdflatex manuscript
+pdflatex manuscript
+#+END_SRC
+
+If the ~Rscript.exe~ command doesn't work by default because it’s not a recognized command, you need to add the location of ~Rscript.exe~ to the system ~PATH~ variable, for instance ~C:/Program Files/R/R-3.6.1/bin~.  Find the equivalent on your system and follow the instructions [here](https://www.architectryan.com/2018/03/17/add-to-the-path-on-windows-10/) so that Windows knows where to find ~Rscript.exe~.
+
+If the Rscript command doesn't work because the package knitr can't be found, your packages might be installed in the wrong place. They have to be installed under the path that is printed when you enter:
+
+#+BEGIN_SRC sh
+Rscript -e ".libPaths()"
+#+END_SRC
+
+This path is probably your system library (e.g., ~C:/Program Files/R/R-3.6.1/library~), not your user library. 
+
+To install packages into the system library, rather than your user library, run RStudio as an administrator to gain the necessary permissions.  If you now open the package installer in RStudio (Tools > Install Packages), you should see the path to the system library under "Install to Library".  Install ~knitr~, ~tidyverse~, ~magrittr~, and ~brms~ here, including all dependencies.
+
+Now running the commands above should work. 
+
+Some helpful links:
+- Why Rscript doesn't find my packages: https://stackoverflow.com/a/39901895
+- How to install packages to the system library, rather than the user library: https://www.accelebrate.com/library/how-to-articles/r-rstudio-library 
+
