@@ -94,17 +94,6 @@ This sentence contains an \inlinenote{inline note}{This is a comment.}.
 
 This sentence contains an \sidenote{side note}{This is another comment.}.
 
-\begin{figure}
-  \centering
-<<fig-example-1,echo=F,include=T,message=F,fig.path="figures/",fig.width=5,fig.height=5>>=
-plot(1:10, pch=1:10)
-@ 
-  \caption{This is the caption of the example figure.}
-  \label{fig:example1}
-\end{figure}
-
-As can be seen in \reffigure{fig:example1}, R can be used to create plots and Knitr inserts them into the document.
-
 \section{Methods and Materials}
 
 \subsection{Participants}
@@ -121,6 +110,23 @@ As can be seen in \reffigure{fig:example1}, R can be used to create plots and Kn
 
 \subsection{Results}
 
+\begin{figure}
+  \centering
+<<fig-example-1, echo=FALSE, fig.width=5, fig.height=5>>=
+plot(1:10, pch=1:10)
+@
+  \caption{This is the caption of the example figure.}
+  \label{fig:example1}
+\end{figure}
+
+As can be seen in \reffigure{fig:example1}, R can be used to create plots and Knitr inserts them into the document.
+
+<<analysis-1, echo=FALSE>>=
+p.value <- 0.049
+@
+
+The analysis showed that the experiment was a great success ($p=\Sexpr{format(p.value, digits=1)}$).
+
 \section{Discussion}
 
 \paragraph{Author contributions}
@@ -135,6 +141,20 @@ What everyone did.
 
 \section{This is an appendix}
 
-Lots of technical stuff that no one is going to read.  Since we know that no one is going to read this, we don’t proof-read it and it will contain embarrassing typos. 
+Lots of technical stuff that no one is going to read.  Since we know that no one is going to read this, we don’t proof-read it and it will contain embarrassing typos.
+
+\section{This is another appendix with R code}
+
+Here’s some code that we ran:
+<<analysis-2>>=
+1:10 -> x
+x + rnorm(10) -> y
+lm(y~x) -> model
+@
+
+And here’s the output:
+<<analysis-3, echo=FALSE>>=
+print(summary(model))
+@
 
 \end{document}
