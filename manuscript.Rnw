@@ -13,7 +13,7 @@
 \usepackage{csquotes}                % Better quotes (inline and block quotes)
 \usepackage{paralist}                % Better lists
 \usepackage{longtable}               % Better tables
-\usepackage{color}                   % Colors
+\usepackage{xcolor}                  % Colors
 \usepackage[hidelinks]{hyperref}     % Don’t wrap links in obnoxious green boxes.
 \usepackage{gb4e}\noautomath         % Linguistic examples
 \usepackage{gensymb}                 % Macros for typesetting various units of measurement
