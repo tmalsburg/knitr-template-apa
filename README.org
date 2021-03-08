@@ -18,6 +18,8 @@ pdflatex manuscript
 pdflatex manuscript
 #+END_SRC
 
+Alternatively you can just use the ~Makefile~ to automatize this process.  Just open a command shell in the directory containing the ~.Rnw~ file and enter ~make~.
+
 ** How to compile the template in Windows using a command shell
 (Description contributed by @epankratz and slightly adapted.)
 
